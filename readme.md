@@ -1,6 +1,6 @@
 # Jokes classification
 
-Russian jokes from anekdot.ru and bash.im is divided into good and bad sets. Classification models are to be trained.
+Russian jokes from anekdot.ru and bash.im are divided into good and bad sets. Classification models are to be trained.
 
 ```
 ├── README.md
