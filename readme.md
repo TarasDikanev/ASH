@@ -5,8 +5,8 @@ Russian jokes from anekdot.ru and bash.im is divided into good and bad sets. Cla
 ```
 ├── README.md
 ├── data
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original data dump.
+│   ├── processed      <- The final data sets for modeling
+│   └── raw            <- The original data dump
 │
 ├── notebooks          <- Jupyter notebooks
 ```
