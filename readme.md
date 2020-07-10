@@ -5,6 +5,7 @@ Russian jokes from anekdot.ru and bash.im are divided into good and bad sets. Cl
 ```
 ├── README.md
 ├── data
+│   ├── interim        <- Intermediate data (direct and inverted indices)
 │   ├── processed      <- The final data sets for modeling
 │   └── raw            <- The original data dump
 │
