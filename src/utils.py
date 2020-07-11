@@ -84,4 +84,10 @@ def LoadIndices():
     bash_bad_inverted = json.loads(open('..\\data\\interim\\bash_bad_inverted.json', 'r', encoding = 'utf-8').read())
     return an_good_direct, an_bad_direct, an_good_inverted, an_bad_inverted, bash_good_direct, bash_bad_direct, bash_good_inverted, bash_bad_inverted
 
+def LoadDatasets():
+    an_good   = json.loads(open('..\\data\\processed\\an_good_eq.json', 'r', encoding = 'utf-8').read())
+    an_bad    = json.loads(open('..\\data\\processed\\an_bad_eq.json', 'r', encoding = 'utf-8').read())
+    bash_good = json.loads(open('..\\data\\processed\\bash_good_eq.json', 'r', encoding = 'utf-8').read())
+    bash_bad  = json.loads(open('..\\data\\processed\\bash_bad_eq.json', 'r', encoding = 'utf-8').read())
+    return an_good, an_bad, bash_good, bash_bad
 
