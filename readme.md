@@ -10,4 +10,6 @@ Russian jokes from anekdot.ru and bash.im are divided into good and bad sets. Cl
 │   └── raw            <- The original data dump
 │
 ├── notebooks          <- Jupyter notebooks
+├── src
+│   └── utils.py
 ```
