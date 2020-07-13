@@ -34,7 +34,7 @@ exceptions = {
     'охуевшая': 'охуевший', 'охуевшей': 'охуевший', 'охуевшие': 'охуевший', 'охуевший': 'охуевший', 
     'охуевшим': 'охуевший', 'охуевшими': 'охуевший', 'охуевших': 'охуевший', 'ахуевшими': 'ахуевший', 
     'охуел': 'охуеть', 'охуела': 'охуеть', 'охуели': 'охуеть', 'спиздили': 'спиздить', 'долбоеб': 'долбоеб', 
-    'долбоёб': 'долбоеб', 'хуею': 'хуеть', 'ебло': 'ебло', 'ебли': 'ебать'
+    'долбоёб': 'долбоеб', 'хуею': 'хуеть', 'ебло': 'ебло', 'ебли': 'ебать', 'пpизывник': 'призывник'
 }
 
 postprocessing = {
@@ -74,20 +74,14 @@ def lemmatize(token):
 
 
 def LoadIndices():
-    an_good_direct = json.loads(open('..\\data\\interim\\an_good_direct.json', 'r', encoding = 'utf-8').read())
-    an_bad_direct = json.loads(open('..\\data\\interim\\an_bad_direct.json', 'r', encoding = 'utf-8').read())
-    an_good_inverted = json.loads(open('..\\data\\interim\\an_good_inverted.json', 'r', encoding = 'utf-8').read())
-    an_bad_inverted = json.loads(open('..\\data\\interim\\an_bad_inverted.json', 'r', encoding = 'utf-8').read())
-    bash_good_direct = json.loads(open('..\\data\\interim\\bash_good_direct.json', 'r', encoding = 'utf-8').read())
-    bash_bad_direct = json.loads(open('..\\data\\interim\\bash_bad_direct.json', 'r', encoding = 'utf-8').read())
-    bash_good_inverted = json.loads(open('..\\data\\interim\\bash_good_inverted.json', 'r', encoding = 'utf-8').read())
-    bash_bad_inverted = json.loads(open('..\\data\\interim\\bash_bad_inverted.json', 'r', encoding = 'utf-8').read())
-    return an_good_direct, an_bad_direct, an_good_inverted, an_bad_inverted, bash_good_direct, bash_bad_direct, bash_good_inverted, bash_bad_inverted
+    an_jokes_direct = json.loads(open('..\\data\\interim\\an_jokes_direct.json', 'r', encoding = 'utf-8').read())
+    an_jokes_inverted = json.loads(open('..\\data\\interim\\an_jokes_inverted.json', 'r', encoding = 'utf-8').read())
+    bash_jokes_direct = json.loads(open('..\\data\\interim\\bash_jokes_direct.json', 'r', encoding = 'utf-8').read())
+    bash_jokes_inverted = json.loads(open('..\\data\\interim\\bash_jokes_inverted.json', 'r', encoding = 'utf-8').read())
+    return an_jokes_direct, an_jokes_inverted, bash_jokes_direct, bash_jokes_inverted
 
 def LoadDatasets():
-    an_good   = json.loads(open('..\\data\\processed\\an_good_eq.json', 'r', encoding = 'utf-8').read())
-    an_bad    = json.loads(open('..\\data\\processed\\an_bad_eq.json', 'r', encoding = 'utf-8').read())
-    bash_good = json.loads(open('..\\data\\processed\\bash_good_eq.json', 'r', encoding = 'utf-8').read())
-    bash_bad  = json.loads(open('..\\data\\processed\\bash_bad_eq.json', 'r', encoding = 'utf-8').read())
-    return an_good, an_bad, bash_good, bash_bad
+    an_jokes   = json.loads(open('..\\data\\processed\\an_jokes_eq.json', 'r', encoding = 'utf-8').read())
+    bash_jokes = json.loads(open('..\\data\\processed\\bash_jokes_eq.json', 'r', encoding = 'utf-8').read())
+    return an_jokes, bash_jokes
 
