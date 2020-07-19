@@ -26,6 +26,12 @@ def tokenize(text):
     return tokens2
 
 
+# Replace latin symbol with same looking cirillic in russian words
+def replace_latin(word, lat, cyr):
+    if (lat in word) and any([c in word for c in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя']):
+        word = word.replace(lat, cyr)
+    return word
+
 # Lemmatization
 exceptions = {
     'лол': 'лол', 'белой': 'белый', 'хуясе': 'хуясе', 'джинса': 'джинса', 'гент': 'гент', 'ал': 'ал', 
@@ -34,7 +40,7 @@ exceptions = {
     'охуевшая': 'охуевший', 'охуевшей': 'охуевший', 'охуевшие': 'охуевший', 'охуевший': 'охуевший', 
     'охуевшим': 'охуевший', 'охуевшими': 'охуевший', 'охуевших': 'охуевший', 'ахуевшими': 'ахуевший', 
     'охуел': 'охуеть', 'охуела': 'охуеть', 'охуели': 'охуеть', 'спиздили': 'спиздить', 'долбоеб': 'долбоеб', 
-    'долбоёб': 'долбоеб', 'хуею': 'хуеть', 'ебло': 'ебло', 'ебли': 'ебать', 'пpизывник': 'призывник'
+    'долбоёб': 'долбоеб', 'хуею': 'хуеть', 'ебло': 'ебло', 'ебли': 'ебать', 'пpизывник': 'призывник', 'y': 'у'
 }
 
 postprocessing = {
@@ -67,6 +73,8 @@ def lemmatize(token):
     if token in exceptions:
         lemma = exceptions[token]
     else:
+        token = replace_latin(token, 'y', 'у')
+        token = replace_latin(token, 'p', 'р')
         lemma = morph.parse(token)[0].normal_form
         if lemma in postprocessing:
             lemma = postprocessing[lemma]
