@@ -26,12 +26,6 @@ def tokenize(text):
     return tokens2
 
 
-# Replace latin symbol with same looking cirillic in russian words
-def replace_latin(word, lat, cyr):
-    if (lat in word) and any([c in word for c in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя']):
-        word = word.replace(lat, cyr)
-    return word
-
 # Lemmatization
 exceptions = {
     'лол': 'лол', 'белой': 'белый', 'хуясе': 'хуясе', 'джинса': 'джинса', 'гент': 'гент', 'ал': 'ал', 
@@ -40,7 +34,8 @@ exceptions = {
     'охуевшая': 'охуевший', 'охуевшей': 'охуевший', 'охуевшие': 'охуевший', 'охуевший': 'охуевший', 
     'охуевшим': 'охуевший', 'охуевшими': 'охуевший', 'охуевших': 'охуевший', 'ахуевшими': 'ахуевший', 
     'охуел': 'охуеть', 'охуела': 'охуеть', 'охуели': 'охуеть', 'спиздили': 'спиздить', 'долбоеб': 'долбоеб', 
-    'долбоёб': 'долбоеб', 'хуею': 'хуеть', 'ебло': 'ебло', 'ебли': 'ебать', 'пpизывник': 'призывник', 'y': 'у'
+    'долбоёб': 'долбоеб', 'хуею': 'хуеть', 'ебло': 'ебло', 'ебли': 'ебать', 'пpизывник': 'призывник',
+    'падруга' : 'падруга', 'y': 'у'
 }
 
 postprocessing = {
@@ -66,13 +61,21 @@ postprocessing = {
     'орало': 'орать', 'охренела': 'охренеть', 'основный': 'основной', 'боев': 'боевой', 'тимлида': 'тимлид', 
     'млина': 'млин', 'вырасти': 'вырастать', 'фот': 'фота', 'другать': 'друган', 'фейспалма': 'фейспалм', 
     'погуглила': 'погуглить', 'погуголь': 'погугли', 'семейник': 'семейники', 'донестись': 'доноситься', 
-    'тибить': 'тибя', 'уползти': 'уползать', 'смутиться': 'смущаться'
+    'тибить': 'тибя', 'уползти': 'уползать', 'смутиться': 'смущаться', 'мyж': 'муж'
 }
+
+# Replace latin symbol with same looking cirillic in russian words
+def replace_latin(word, lat, cyr):
+    if (lat in word) and any([c in word for c in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя']):
+        word = word.replace(lat, cyr)
+    return word
 
 def lemmatize(token):
     if token in exceptions:
         lemma = exceptions[token]
     else:
+        if token[0] == '-':
+            token = token[1:]
         token = replace_latin(token, 'y', 'у')
         token = replace_latin(token, 'p', 'р')
         lemma = morph.parse(token)[0].normal_form
