@@ -6,6 +6,9 @@ import string
 import pymorphy2
 morph = pymorphy2.MorphAnalyzer()
 
+import numpy as np
+from sklearn.model_selection import StratifiedShuffleSplit
+
 import json
 
 
@@ -95,4 +98,14 @@ def LoadDatasets():
     an_jokes   = json.loads(open('..\\data\\processed\\an_jokes_eq.json', 'r', encoding = 'utf-8').read())
     bash_jokes = json.loads(open('..\\data\\processed\\bash_jokes_eq.json', 'r', encoding = 'utf-8').read())
     return an_jokes, bash_jokes
+
+# Train and test samples indices
+def TrainTestIdx(jokes, train_share = 0.75):
+    #N = len(jokes)
+    sss = StratifiedShuffleSplit(1, train_size = train_share)
+    y = [joke[-1] for joke in jokes]
+    return list(sss.split(np.zeros(len(jokes)), y))[0]
+
+
+
 
