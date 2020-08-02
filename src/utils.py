@@ -11,6 +11,8 @@ from sklearn.model_selection import StratifiedShuffleSplit
 
 import json
 
+import jupyter_beeper
+
 
 # Tokenization
 to_list = ['когда-то', 'тогда-то', 'куда-то', 'откуда-то', 'туда-то', 'где-то', 'чей-то', 'какой-то', 'такой-то', 'который-то', 
@@ -107,5 +109,8 @@ def TrainTestIdx(jokes, train_share = 0.75):
     return list(sss.split(np.zeros(len(jokes)), y))[0]
 
 
+def Beep():
+    b = jupyter_beeper.Beeper()
+    b.beep(frequency=530, secs=0.8, blocking=True)
 
 
